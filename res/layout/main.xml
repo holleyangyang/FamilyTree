@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" 
+    >
+    
+ 	<LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="horizontal" >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="信息填写" />
+    </LinearLayout>
+    
+ 	
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="horizontal" >
+
+        <TextView
+            android:layout_width="100px"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="姓名" />
+
+        <EditText
+            android:id="@+id/username"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10" >
+        </EditText>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal" >
+        <TextView
+            android:layout_width="100px"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="性别" />
+
+        <RadioButton
+            android:id="@+id/sex1"
+            android:layout_width="100px"
+            android:layout_height="wrap_content"
+            android:text="@string/radioSex1" />
+                <RadioButton
+            android:id="@+id/sex0"
+            android:layout_width="100px"
+            android:layout_height="wrap_content"
+            android:text="@string/radioSex0" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="horizontal" >
+    <Button
+        android:id="@+id/bthSub"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/bthSub" />
+    <Button
+        android:id="@+id/bthRes"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/btnRes" />
+    </LinearLayout>
+
+</LinearLayout>
