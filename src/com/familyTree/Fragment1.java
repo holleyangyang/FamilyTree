@@ -1,6 +1,11 @@
 package com.familyTree;
 
-import com.familyTree.R;
+import java.util.List;
+
+import com.adapter.PersonAdapter;
+import com.dao.PersonDao;
+import com.entity.Person;
+  import com.familyTree.R;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -11,9 +16,12 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ListView;
 
 public class Fragment1 extends Fragment {
 	OnBackListener mListener;
+	private PersonDao personDao;
+	private ListView listView1;
 
 	public interface OnBackListener {
 		public void backEvent();
@@ -33,6 +41,8 @@ public class Fragment1 extends Fragment {
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		personDao=new PersonDao(getActivity());
+
 	}
 
 	@Override
@@ -40,24 +50,16 @@ public class Fragment1 extends Fragment {
 			Bundle savedInstanceState) {
 
 		View parentView = inflater.inflate(R.layout.fragment1, container, false);
-		Button backBtn = (Button)parentView.findViewById(R.id.button1);
-		Button toOtherActivityBtn = (Button)parentView.findViewById(R.id.button2);
-		backBtn.setOnClickListener(new OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				if(mListener!=null)mListener.backEvent();
-			}
-		});
 		
-		toOtherActivityBtn.setOnClickListener(new OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				Intent intent = new Intent(getActivity(), OtherActivity1.class);
-				startActivity(intent);
-			}
-		});
-		
+		listView1 = (ListView) parentView.findViewById(R.id.listView1);
+    	List<Person> students = personDao.page(0, 15);
+    	
+    	PersonAdapter adapter = new PersonAdapter(getActivity(), students, R.layout.list_item);
+    	
+    	listView1.setAdapter(adapter);
 		return parentView;
 		// return super.onCreateView(, container, savedInstanceState);
 	}
+	 
+
 }

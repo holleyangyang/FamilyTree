@@ -22,26 +22,26 @@
             style="@style/tab_rb_style"
             android:checked="true"
             android:drawableTop="@drawable/tab_selector_weixing"
-            android:text="微信" 
+            android:text="信息列表" 
             />
 
         <RadioButton
             android:id="@+id/tab_rb_2"
             style="@style/tab_rb_style"
             android:drawableTop="@drawable/tab_selector_tongxunlu"
-            android:text="通讯录" />
+            android:text="信息添加" />
 
         <RadioButton
             android:id="@+id/tab_rb_3"
             style="@style/tab_rb_style"
             android:drawableTop="@drawable/tab_selector_faxian"
-            android:text="发现" />
+            android:text="待扩展" />
 
         <RadioButton
             android:id="@+id/tab_rb_4"
             style="@style/tab_rb_style"
             android:drawableTop="@drawable/tab_selector_wo"
-            android:text="我" />
+            android:text="待扩展" />
     </RadioGroup>
 
     <android.support.v4.app.FragmentTabHost
