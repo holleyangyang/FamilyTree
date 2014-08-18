@@ -104,8 +104,7 @@ public class PersonAdapter extends BaseAdapter {
 	}
 	public static Bitmap getLoacalBitmap(String url) {
 	     try {
-	    	 System.out.println("url==="+url);
-	          FileInputStream fis = new FileInputStream(url);
+ 	          FileInputStream fis = new FileInputStream(url);
 	          return BitmapFactory.decodeStream(fis);
 	     } catch (FileNotFoundException e) {
 	          e.printStackTrace();

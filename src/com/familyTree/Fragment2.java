@@ -24,9 +24,12 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.ListView;
 import android.widget.RadioButton;
 import android.widget.Toast;
 
@@ -43,20 +46,17 @@ public class Fragment2 extends Fragment {
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
- 	final	View parentView = inflater.inflate(R.layout.fragment2, container, false);
+		final	View parentView = inflater.inflate(R.layout.fragment2, container, false);
 		Button bthSub = (Button)parentView.findViewById(R.id.bthSub);
 		ImageView iv = (ImageView) parentView.findViewById(R.id.list_image_pre);	
 		iv.setDrawingCacheEnabled(true);
 		
-		
 		bthSub.setOnClickListener(new View.OnClickListener() {
-		
-			
 			@Override
 			public void onClick(View v) {
-			// TODO Auto-generated method stub
+				// TODO Auto-generated method stub
 				ImageView iv = (ImageView) parentView.findViewById(R.id.list_image_pre);	
-  		 		iv.setDrawingCacheEnabled(false);
+		 		iv.setDrawingCacheEnabled(false);
 				Person person =new Person();
 				EditText nameText=(EditText)parentView.findViewById(R.id.username);
 				person.setName(nameText.getText().toString());
@@ -71,7 +71,8 @@ public class Fragment2 extends Fragment {
 				}else{
 					sex = sex0;
 				}
-				person.setAge(0);
+				EditText ageText=(EditText)parentView.findViewById(R.id.age);
+				person.setAge(Integer.valueOf(ageText.getText().toString()));
 			
 				person.setSex(sex);
 				
@@ -83,14 +84,18 @@ public class Fragment2 extends Fragment {
 		
 		Button bthPz=(Button)parentView.findViewById(R.id.bthPZ);
 		bthPz.setOnClickListener(new View.OnClickListener() {
-			
 			@Override
 			public void onClick(View v) { 
+				
 				Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);//调用android自带的照相机 
 				//photoUri = MediaStore.Images.Media.EXTERNAL_CONTENT_URI; 
 				startActivityForResult(intent, 1); 
+				
 			}
 		});
+		
+		 
+		
 		return parentView;
 		// return super.onCreateView(, container, savedInstanceState);
 	}

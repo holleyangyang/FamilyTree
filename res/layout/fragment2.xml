@@ -58,7 +58,25 @@
             android:layout_height="wrap_content"
             android:text="@string/radioSex0" />
     </LinearLayout>
-    
+        <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="horizontal" >
+
+        <TextView
+            android:layout_width="100px"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="年龄" />
+
+        <EditText
+            android:id="@+id/age"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10" android:text="0">
+        </EditText>
+    </LinearLayout>
 <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
