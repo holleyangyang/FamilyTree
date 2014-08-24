@@ -9,6 +9,7 @@ import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTabHost;
 import android.support.v4.app.FragmentTransaction;
+import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.View;
 import android.widget.Button;
@@ -35,6 +36,7 @@ public class MainActivity extends FragmentActivity implements OnBackListener {
 		
 	}
 
+	
 	private void initView() {
 		mTabHost = (FragmentTabHost) findViewById(android.R.id.tabhost);
 		mTabHost.setup(this, getSupportFragmentManager(), R.id.realtabcontent);
@@ -70,12 +72,12 @@ public class MainActivity extends FragmentActivity implements OnBackListener {
 					break;
 				case R.id.tab_rb_3:
 
-					Fragment2 f3=new Fragment2();
+					Fragment3 f3=new Fragment3();
 					ft.replace(R.id.realtabcontent, f3)	;
 					break;
 				case R.id.tab_rb_4:
 
-					Fragment2 f4=new Fragment2();
+					Fragment4 f4=new Fragment4();
 					ft.replace(R.id.realtabcontent, f4)	;
 					break;
 
@@ -99,11 +101,23 @@ public class MainActivity extends FragmentActivity implements OnBackListener {
 
 	@Override
 	public void onBackPressed() {
+		
 	}
 	
 	@Override
 	public void backEvent() {
 		Toast.makeText(this, "back", Toast.LENGTH_SHORT).show();
 	}
-
+	@Override
+	public boolean onKeyDown(int keyCode, KeyEvent event) {
+		   if (keyCode == KeyEvent.KEYCODE_BACK && event.getRepeatCount() == 0) {
+		       // Do something.
+			   System.out.println("=========================yyyyyyyyyyyyyyyyyyyyyyyyy");
+		       return true;
+		   }
+		   return super.onKeyDown(keyCode, event);
+		  
+	}
 }
+
+

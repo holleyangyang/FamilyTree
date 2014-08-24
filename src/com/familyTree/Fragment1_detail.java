@@ -105,12 +105,6 @@ public class Fragment1_detail extends Fragment {
 		return index;
 
 	}
-	public boolean onKeyDown(int keyCode, KeyEvent event) {
-		   if (keyCode == KeyEvent.KEYCODE_BACK && event.getRepeatCount() == 0) {
-		       // Do something.
-			   System.out.println("=========================yyyyyyyyyyyyyyyyyyyyyyyyy");
-		       return true;
-		   }
-		   return onKeyDown(keyCode, event);
-	}
+
+
 }

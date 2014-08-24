@@ -58,7 +58,7 @@
             android:layout_height="wrap_content"
             android:text="@string/radioSex0" />
     </LinearLayout>
-        <LinearLayout
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
@@ -77,19 +77,39 @@
             android:ems="10" android:text="0">
         </EditText>
     </LinearLayout>
-<LinearLayout
+	<LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal" >
-    <Button
-        android:id="@+id/bthPZ"
-        android:layout_width="wrap_content"
+	    <Button
+	        android:id="@+id/bthPZ"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:text="@string/btnPz" 
+	        />
+	     <Button
+	        android:id="@+id/bthXC"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:text="@string/btnXC" 
+	     />
+     </LinearLayout>
+     <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/btnPz" />
+        android:gravity="center"
+        android:orientation="horizontal" >
+     
         <ImageView android:id="@+id/image_pre"  
-        android:layout_marginTop="6px" android:layout_marginBottom="6px"  
-        android:layout_marginLeft="6px" android:layout_marginRight="6px"  
-        android:layout_width="wrap_content" android:layout_height="wrap_content" /> 
+        	android:layout_marginTop="6px" 
+        	android:layout_marginBottom="6px"  
+        	android:layout_marginLeft="6px" 
+        	android:layout_marginRight="6px"  
+        	android:layout_width="wrap_content" 
+        	android:layout_height="wrap_content" 
+        /> 
+        
+        
     </LinearLayout>
     
     <LinearLayout

@@ -11,5 +11,6 @@
     <string name="btnPz">拍照</string>
     <string name="title_activity_fragment1__user">Fragment1_UserActivity</string>
     <string name="title_activity_fragment1_detail">Fragment1_detail</string>
+    <string name="btnXC">从相册选择</string>
 
 </resources>
