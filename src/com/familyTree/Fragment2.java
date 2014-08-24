@@ -48,17 +48,16 @@ public class Fragment2 extends Fragment {
 			Bundle savedInstanceState) {
 		final	View parentView = inflater.inflate(R.layout.fragment2, container, false);
 		Button bthSub = (Button)parentView.findViewById(R.id.bthSub);
-		ImageView iv = (ImageView) parentView.findViewById(R.id.list_image_pre);	
-		iv.setDrawingCacheEnabled(true);
+
 		
 		bthSub.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
-				ImageView iv = (ImageView) parentView.findViewById(R.id.list_image_pre);	
+				ImageView iv = (ImageView) parentView.findViewById(R.id.image_pre);	
 		 		iv.setDrawingCacheEnabled(false);
 				Person person =new Person();
-				EditText nameText=(EditText)parentView.findViewById(R.id.username);
+				EditText nameText=(EditText)parentView.findViewById(R.id.name);
 				person.setName(nameText.getText().toString());
 				
 				RadioButton rbSex1=(RadioButton) parentView.findViewById(R.id.sex1);
@@ -132,7 +131,7 @@ public class Fragment2 extends Fragment {
 	                    e.printStackTrace();  
 	                }  
 	            }  
- 	            ((ImageView) getActivity().findViewById(R.id.list_image_pre)).setImageBitmap(bitmap);// 将图片显示在ImageView里  
+ 	            ((ImageView) getActivity().findViewById(R.id.image_pre)).setImageBitmap(bitmap);// 将图片显示在ImageView里  
 	       
 		 }   
 	    }  

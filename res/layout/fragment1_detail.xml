@@ -2,18 +2,115 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="horizontal" 
-    >
-<LinearLayout  
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
     android:orientation="vertical" 
     >
+    	<LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="horizontal" >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="信息填写" />
+    </LinearLayout>
+ 	
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="horizontal" >
+
+        <TextView
+            android:layout_width="100px"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="姓名" />
+
+        <EditText
+            android:id="@+id/name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10" >
+        </EditText>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal" >
+        <TextView
+            android:layout_width="100px"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="性别" />
+
+        <RadioButton
+            android:id="@+id/sex1"
+            android:layout_width="100px"
+            android:layout_height="wrap_content"
+            android:text="@string/radioSex1" />
+        <RadioButton
+            android:id="@+id/sex0"
+            android:layout_width="100px"
+            android:layout_height="wrap_content"
+            android:text="@string/radioSex0" />
+    </LinearLayout>
+        <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="horizontal" >
+
+        <TextView
+            android:layout_width="100px"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="年龄" />
+
+        <EditText
+            android:id="@+id/age"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10" android:text="0">
+        </EditText>
+    </LinearLayout>
+<LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal" >
+    <Button
+        android:id="@+id/bthPZ"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/btnPz" />
+        <ImageView android:id="@+id/image_pre"  
+        android:layout_marginTop="6px" 
+        android:layout_marginBottom="6px"  
+        android:layout_marginLeft="6px" 
+        android:layout_marginRight="6px"  
+        android:layout_width="wrap_content" 
+        android:layout_height="wrap_content" /> 
+    </LinearLayout>
+    
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="horizontal" >
+    <Button
+        android:id="@+id/bthSub"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/bthSub" />
     <Button
         android:id="@+id/btnReturn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="返回" />
-</LinearLayout>
+    </LinearLayout>
+    
+
 
 </LinearLayout>

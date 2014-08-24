@@ -10,6 +10,7 @@ import java.util.Locale;
 import com.dao.PersonDao;
 import com.entity.Person;
 import com.familyTree.R;
+import com.util.ImageUtil;
 import com.util.StringUtil;
 
 import android.app.Activity;
@@ -23,6 +24,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.text.format.DateFormat;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -37,37 +39,78 @@ import android.widget.Toast;
 
 public class Fragment1_detail extends Fragment {
 	private PersonDao personDao;
-	private FragmentManager  fm=null;
-  	@Override
+	private FragmentManager fm = null;
+
+	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
-		 
-		personDao=new PersonDao(getActivity());
+
+		personDao = new PersonDao(getActivity());
 	}
-	
+
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
-		final	View parentView = inflater.inflate(R.layout.fragment1_detail, container, false);
-		Button bthReturn =(Button) parentView.findViewById(R.id.btnReturn);
+		final View parentView = inflater.inflate(R.layout.fragment1_detail,
+				container, false);
+		Button bthReturn = (Button) parentView.findViewById(R.id.btnReturn);
 		bthReturn.setOnClickListener(new View.OnClickListener() {
-			
+
 			@Override
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
-				fm=getActivity().getSupportFragmentManager();
-				FragmentTransaction ft =fm.beginTransaction();
-				Fragment1 fragment1= new Fragment1();
-				ft.replace(R.id.realtabcontent, fragment1)	;
+				fm = getActivity().getSupportFragmentManager();
+				FragmentTransaction ft = fm.beginTransaction();
+				Fragment1 fragment1 = new Fragment1();
+				ft.replace(R.id.realtabcontent, fragment1);
 				ft.addToBackStack(null);
 				ft.commit();
 			}
 		});
+
+		Person person = personDao.getPersonDetail(getShowIndex());
+
+		EditText etName = (EditText) parentView.findViewById(R.id.name);
+		etName.setText(person.getName());
+
+		ImageView imageview = (ImageView) parentView
+				.findViewById(R.id.image_pre);
+
+		Bitmap bitmap = ImageUtil.getLoacalBitmap(person.getFileName()); // 从本地取图
+		imageview.setImageBitmap(bitmap);
+
 		return parentView;
 		// return super.onCreateView(, container, savedInstanceState);
 	}
-	 
+
+	public static Fragment1_detail newInstance(int index) {
+
+		Fragment1_detail df = new Fragment1_detail();
+
+		Bundle args = new Bundle();
+
+		args.putInt("index", index);
+
+		df.setArguments(args);
+
+		return df;
+
 	}
 
+	public int getShowIndex() {
 
+		int index = getArguments().getInt("index", 0);
+		System.out.println("index===" + index);
+		return index;
+
+	}
+	public boolean onKeyDown(int keyCode, KeyEvent event) {
+		   if (keyCode == KeyEvent.KEYCODE_BACK && event.getRepeatCount() == 0) {
+		       // Do something.
+			   System.out.println("=========================yyyyyyyyyyyyyyyyyyyyyyyyy");
+		       return true;
+		   }
+		   return onKeyDown(keyCode, event);
+	}
+}

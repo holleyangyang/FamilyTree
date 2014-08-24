@@ -3,11 +3,11 @@ package com.entity;
 import android.graphics.Bitmap;
 
 public class Person {
-	public int id;
-    public String name;
-    public int age;
-    public String sex;
-    public String fileName;
+	private int id;
+    private String name;
+    private int age;
+    private String sex;
+    private String fileName;
     
 	   
 
@@ -62,7 +62,7 @@ public class Person {
 	        this.sex = sex;
 	    }
 	    public Person(int id,String name, int age, String sex,String fileName)
-	    {
+	    {   this.id=id;
 	        this.name = name;
 	        this.age = age;
 	        this.sex = sex;

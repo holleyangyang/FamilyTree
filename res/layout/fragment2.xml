@@ -30,7 +30,7 @@
             android:text="姓名" />
 
         <EditText
-            android:id="@+id/username"
+            android:id="@+id/name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10" >
@@ -86,7 +86,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/btnPz" />
-        <ImageView android:id="@+id/list_image_pre"  
+        <ImageView android:id="@+id/image_pre"  
         android:layout_marginTop="6px" android:layout_marginBottom="6px"  
         android:layout_marginLeft="6px" android:layout_marginRight="6px"  
         android:layout_width="wrap_content" android:layout_height="wrap_content" /> 

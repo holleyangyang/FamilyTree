@@ -6,6 +6,7 @@ import com.adapter.PersonAdapter;
 import com.dao.PersonDao;
 import com.entity.Person;
 import com.familyTree.R;
+import com.util.StringUtil;
 
 import android.app.Activity;
 import android.os.Bundle;
@@ -18,13 +19,13 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
+import android.widget.TextView;
 
 public class Fragment1 extends Fragment {
 	OnBackListener mListener;
 	private PersonDao personDao;
 	private ListView listView1;
-	private FragmentManager  fm=null;
-
+ 
 	public interface OnBackListener {
 		public void backEvent();
 	}
@@ -64,9 +65,11 @@ public class Fragment1 extends Fragment {
 			public void onItemClick(AdapterView<?> parent, View view,
 					int position, long id) {
 				// TODO Auto-generated method stub
-				fm=getActivity().getSupportFragmentManager();
+				FragmentManager   fm=getActivity().getSupportFragmentManager();
 				FragmentTransaction ft =fm.beginTransaction();
-				Fragment1_detail detail= new Fragment1_detail();
+				TextView tx=(TextView) view.findViewById(R.id.id);
+				
+				Fragment1_detail detail=  Fragment1_detail.newInstance(Integer.valueOf(StringUtil.getString(tx.getText())));
 				ft.replace(R.id.realtabcontent, detail)	;
 				ft.addToBackStack(null);
 				ft.commit();

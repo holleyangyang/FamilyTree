@@ -6,7 +6,9 @@ import com.util.db.DataBaseHelper;
 
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTabHost;
+import android.support.v4.app.FragmentTransaction;
 import android.view.Menu;
 import android.view.View;
 import android.widget.Button;
@@ -50,30 +52,42 @@ public class MainActivity extends FragmentActivity implements OnBackListener {
 
 			@Override
 			public void onCheckedChanged(RadioGroup group, int checkedId) {
+				FragmentManager   fm=getSupportFragmentManager();
+				FragmentTransaction ft =fm.beginTransaction();
 				switch (checkedId) {
 				case R.id.tab_rb_1:
-					mTabHost.setCurrentTab(0);
+
+					Fragment1 f1=new Fragment1();
+					ft.replace(R.id.realtabcontent, f1)	;
+
+					
+					//mTabHost.setCurrentTab(0);
 					break;
 				case R.id.tab_rb_2:
-					mTabHost.setCurrentTab(1);
 
+					Fragment2 f2=new Fragment2();
+					ft.replace(R.id.realtabcontent, f2)	;
 					break;
 				case R.id.tab_rb_3:
 
-					mTabHost.setCurrentTab(2);
+					Fragment2 f3=new Fragment2();
+					ft.replace(R.id.realtabcontent, f3)	;
 					break;
 				case R.id.tab_rb_4:
 
-					mTabHost.setCurrentTab(3);
+					Fragment2 f4=new Fragment2();
+					ft.replace(R.id.realtabcontent, f4)	;
 					break;
 
 				default:
 					break;
 				}
+				ft.addToBackStack(null);
+				ft.commit();
 			}
 		});
 
-		mTabHost.setCurrentTab(0);
+		//mTabHost.setCurrentTab(0);
 	}
 
 	@Override

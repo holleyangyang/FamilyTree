@@ -45,8 +45,8 @@ public class PersonDao {
 	        {
 	            for (Person person : persons)
 	            {
-	                db.execSQL("INSERT INTO Person(id,name,age,sex) VALUES(null, ?, ?, ?)", new Object[] { person.name,
-	                        person.age, person.sex });
+	                db.execSQL("INSERT INTO Person(id,name,age,sex) VALUES(null, ?, ?, ?)", new Object[] { person.getName(),
+	                        person.getAge(), person.getSex() });
 	                // 带两个参数的execSQL()方法，采用占位符参数？，把参数值放在后面，顺序对应
 	                // 一个参数的execSQL()方法中，用户输入特殊字符时需要转义
 	                // 使用占位符有效区分了这种情况
@@ -112,5 +112,35 @@ public class PersonDao {
 			
 			cur.close();
  			return page;
+		}
+		/**
+		 * 
+		 * @param id
+		 * @return
+		 */
+		public Person getPersonDetail(int id){
+			Person person =new Person();
+ 			List<Person> page = new ArrayList<Person>();
+ 			Cursor cur = db.rawQuery("select id,name,age,sex,fileName from person where id=? ",new String[]{String.valueOf(id)});
+			System.out.println("==========1========="+cur.getCount());
+			
+			while(cur.moveToNext()){
+			 
+				String name = cur.getString(cur.getColumnIndex("name"));
+				int age= cur.getInt(cur.getColumnIndex("age"));
+				String sex= cur.getString(cur.getColumnIndex("sex"));
+				String fileName = cur.getString(cur.getColumnIndex("fileName"));
+				page.add(new Person(id,name,age,sex,fileName));
+				System.out.println("===============");
+			}
+			
+			cur.close();
+			
+			System.out.println("page.size()==="+page.size());
+			if(page.size()>0){
+				person=page.get(0);
+			}
+			System.out.println("====="+person);
+			return person;
 		}
 }

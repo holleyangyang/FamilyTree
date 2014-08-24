@@ -5,6 +5,7 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.util.List;
 
+import com.util.ImageUtil;
 import com.viewCache.ViewCache;
 import com.entity.Person;
 import com.familyTree.R;
@@ -96,21 +97,13 @@ public class PersonAdapter extends BaseAdapter {
 		nameview.setText(person.getName().toString());
 		ageview.setText(" "+person.getAge()+" ");
 		sexview.setText(" "+person.getSex()+" ");
-		Bitmap bitmap = getLoacalBitmap(person.getFileName()); //从本地取图
+		Bitmap bitmap = ImageUtil.getLoacalBitmap(person.getFileName()); //从本地取图
 		imageview.setImageBitmap(bitmap);
 		
 		
 		return arg1;
 	}
-	public static Bitmap getLoacalBitmap(String url) {
-	     try {
- 	          FileInputStream fis = new FileInputStream(url);
-	          return BitmapFactory.decodeStream(fis);
-	     } catch (FileNotFoundException e) {
-	          e.printStackTrace();
-	          return null;
-	     }
-	}
+
 
  
 
