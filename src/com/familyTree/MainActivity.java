@@ -2,7 +2,6 @@ package com.familyTree;
 
 import com.familyTree.R;
 import com.familyTree.Fragment1.OnBackListener;
-import com.util.db.DataBaseHelper;
 
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
@@ -11,8 +10,6 @@ import android.support.v4.app.FragmentTabHost;
 import android.support.v4.app.FragmentTransaction;
 import android.view.KeyEvent;
 import android.view.Menu;
-import android.view.View;
-import android.widget.Button;
 import android.widget.RadioGroup;
 import android.widget.Toast;
 import android.widget.RadioGroup.OnCheckedChangeListener;
@@ -24,6 +21,7 @@ public class MainActivity extends FragmentActivity implements OnBackListener {
 	private FragmentTabHost mTabHost;
 	private RadioGroup mTabRg;
 
+	@SuppressWarnings("rawtypes")
 	private final Class[] fragments = { Fragment1.class, Fragment2.class,
 			Fragment3.class, Fragment4.class };
 
@@ -60,6 +58,7 @@ public class MainActivity extends FragmentActivity implements OnBackListener {
 				case R.id.tab_rb_1:
 
 					Fragment1 f1=new Fragment1();
+				
 					ft.replace(R.id.realtabcontent, f1)	;
 
 					
@@ -99,10 +98,16 @@ public class MainActivity extends FragmentActivity implements OnBackListener {
 		return true;
 	}
 
-	@Override
-	public void onBackPressed() {
+	@Override  
+	public void onBackPressed() {  
 		
-	}
+		FragmentManager   fMgr=getSupportFragmentManager();
+	    if(fMgr.findFragmentByTag("Fragment1")!=null && fMgr.findFragmentByTag("Fragment1").isVisible()) {  
+	        MainActivity.this.finish();  
+	    } else {  
+	        super.onBackPressed();  
+	    }  
+	}  
 	
 	@Override
 	public void backEvent() {
@@ -113,11 +118,18 @@ public class MainActivity extends FragmentActivity implements OnBackListener {
 		   if (keyCode == KeyEvent.KEYCODE_BACK && event.getRepeatCount() == 0) {
 		       // Do something.
 			   System.out.println("=========================yyyyyyyyyyyyyyyyyyyyyyyyy");
+			   FragmentManager   fMgr=getSupportFragmentManager();
+			    if(fMgr.findFragmentByTag("Fragment1")!=null && fMgr.findFragmentByTag("Fragment1").isVisible()) {  
+			        MainActivity.this.finish();  
+			    } else {  
+			        super.onBackPressed();  
+			    }  
 		       return true;
 		   }
 		   return super.onKeyDown(keyCode, event);
 		  
 	}
+	
 }
 
 

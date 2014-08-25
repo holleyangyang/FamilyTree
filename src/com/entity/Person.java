@@ -1,6 +1,5 @@
 package com.entity;
 
-import android.graphics.Bitmap;
 
 public class Person {
 	private int id;

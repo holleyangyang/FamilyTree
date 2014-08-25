@@ -15,7 +15,7 @@ public class DataBaseHelper extends SQLiteOpenHelper// 继承SQLiteOpenHelper类
     // 数据库版本号
     private static final int DATABASE_VERSION = 1;
     // 数据库名
-    private static final String DATABASE_NAME = "familyTree3.db";
+    private static final String DATABASE_NAME = "familyTree4.db";
 
 
 

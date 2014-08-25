@@ -1,8 +1,7 @@
 package com.adapter;
 
 
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
+
 import java.util.List;
 
 import com.util.ImageUtil;
@@ -10,11 +9,9 @@ import com.viewCache.ViewCache;
 import com.entity.Person;
 import com.familyTree.R;
 
- // Downloads By http://www.veryhuo.com
-import android.content.Context;
+ import android.content.Context;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.view.LayoutInflater;
+ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;

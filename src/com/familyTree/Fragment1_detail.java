@@ -1,41 +1,27 @@
 package com.familyTree;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.util.Calendar;
-import java.util.Locale;
+
 
 import com.dao.PersonDao;
 import com.entity.Person;
 import com.familyTree.R;
 import com.util.ImageUtil;
-import com.util.StringUtil;
 
-import android.app.Activity;
-import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;
-import android.os.Environment;
-import android.provider.MediaStore;
+
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
-import android.text.format.DateFormat;
-import android.util.Log;
-import android.view.KeyEvent;
+
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
-import android.widget.AdapterView.OnItemClickListener;
+
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.ListView;
-import android.widget.RadioButton;
-import android.widget.Toast;
+
 
 public class Fragment1_detail extends Fragment {
 	private PersonDao personDao;
@@ -80,6 +66,8 @@ public class Fragment1_detail extends Fragment {
 		Bitmap bitmap = ImageUtil.getLoacalBitmap(person.getFileName()); // 从本地取图
 		imageview.setImageBitmap(bitmap);
 
+		
+		
 		return parentView;
 		// return super.onCreateView(, container, savedInstanceState);
 	}
@@ -105,6 +93,9 @@ public class Fragment1_detail extends Fragment {
 		return index;
 
 	}
+	
+	
+	
 
 
 }

@@ -12,6 +12,7 @@ import com.entity.Person;
 import com.familyTree.R;
 import com.util.StringUtil;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -22,19 +23,14 @@ import android.os.Environment;
 import android.provider.MediaStore;
 import android.support.v4.app.Fragment;
 import android.text.format.DateFormat;
-import android.util.Log;
-import android.view.LayoutInflater;
+ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
-import android.widget.AdapterView.OnItemClickListener;
-import android.widget.Button;
+ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.ListView;
-import android.widget.RadioButton;
-import android.widget.Toast;
-
+ import android.widget.RadioButton;
+ 
 public class Fragment2 extends Fragment {
 	private PersonDao personDao;
 	private String fileName = "";
@@ -45,11 +41,9 @@ public class Fragment2 extends Fragment {
 	// 用来保存图片
 	private Bitmap bitMap;
 
-	private boolean hasImage; // 是否已经选择了图片
-
+ 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
-		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
 		personDao = new PersonDao(getActivity());
 	}
@@ -64,7 +58,6 @@ public class Fragment2 extends Fragment {
 		bthSub.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				// TODO Auto-generated method stub
 				ImageView iv = (ImageView) parentView
 						.findViewById(R.id.image_pre);
 				iv.setDrawingCacheEnabled(false);
@@ -115,7 +108,6 @@ public class Fragment2 extends Fragment {
 
 			@Override
 			public void onClick(View v) {
-				// TODO Auto-generated method stub
 				Intent localIntent = new Intent();
 				localIntent.setType("image/*");
 				localIntent.setAction("android.intent.action.GET_CONTENT");
@@ -127,40 +119,24 @@ public class Fragment2 extends Fragment {
 		return parentView;
 		// return super.onCreateView(, container, savedInstanceState);
 	}
-
+	@SuppressWarnings("static-access")
+	@SuppressLint("SdCardPath")
+	@Override
 	public void onActivityResult(int requestCode, int resultCode, Intent data) {
 		super.onActivityResult(requestCode, resultCode, data);
 		if (resultCode == Activity.RESULT_OK) {
-System.out.println("requestCode======="+requestCode);
 			switch (requestCode) {
 			case CAMERA_WITH_DATA:
 				String sdStatus = Environment.getExternalStorageState();
 				if (!sdStatus.equals(Environment.MEDIA_MOUNTED)) { // 检测sd是否可用
 					return;
 				}
-				String name = new DateFormat().format("yyyyMMdd_hhmmss",
-						Calendar.getInstance(Locale.CHINA)) + ".jpg";
-				Toast.makeText(getActivity(), name, Toast.LENGTH_LONG).show();
+
+				//Toast.makeText(getActivity(), name, Toast.LENGTH_LONG).show();
 				Bundle bundle = data.getExtras();
 				bitMap = (Bitmap) bundle.get("data");// 获取相机返回的数据，并转换为Bitmap图片格式
-				FileOutputStream b = null;
-				File file = new File("/sdcard/myImage/");
-				file.mkdirs();// 创建文件夹
-				fileName = "/sdcard/myImage/" + name;
-
-				try {
-					b = new FileOutputStream(fileName);
-					bitMap.compress(Bitmap.CompressFormat.JPEG, 100, b);// 把数据写入文件
-				} catch (FileNotFoundException e) {
-					e.printStackTrace();
-				} finally {
-					try {
-						b.flush();
-						b.close();
-					} catch (IOException e) {
-						e.printStackTrace();
-					}
-				}
+    
+				 
 				((ImageView) getView().findViewById(R.id.image_pre))
 				.setImageBitmap(bitMap);// 将图片显示在ImageView里
 				break;
@@ -169,7 +145,8 @@ System.out.println("requestCode======="+requestCode);
 					bitMap.recycle();
 				}
 				Uri selectedImageUri = data.getData();
-				if (selectedImageUri != null) {
+ 				
+ 				if (selectedImageUri != null) {
 					try {
 						bitMap = BitmapFactory.decodeStream(getActivity()
 								.getContentResolver().openInputStream(
@@ -178,6 +155,29 @@ System.out.println("requestCode======="+requestCode);
 						e.printStackTrace();
 					}
 				}
+				
+				
+				FileOutputStream b = null;
+				File file = new File("/sdcard/myImage/");
+				file.mkdirs();// 创建文件夹
+				
+				
+				try {
+					String name = new DateFormat().format("yyyyMMdd_hhmmss",
+							Calendar.getInstance(Locale.CHINA)) + ".jpg";
+					fileName = "/sdcard/myImage/" + name;
+					b = new FileOutputStream(fileName);
+					bitMap.compress(Bitmap.CompressFormat.JPEG, 100, b);// 把数据写入文件
+					try {
+						b.flush();
+						b.close();
+					} catch (IOException e) {
+						e.printStackTrace();
+					}
+				} catch (FileNotFoundException e) {
+					e.printStackTrace();
+				}
+				
 				((ImageView) getView().findViewById(R.id.image_pre))
 				.setImageBitmap(bitMap);// 将图片显示在ImageView里
 				break;
