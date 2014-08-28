@@ -21,6 +21,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 
 public class Fragment1_detail extends Fragment {
@@ -57,11 +58,18 @@ public class Fragment1_detail extends Fragment {
 
 		Person person = personDao.getPersonDetail(getShowIndex());
 
-		EditText etName = (EditText) parentView.findViewById(R.id.name);
-		etName.setText(person.getName());
+		TextView txtName = (TextView) parentView.findViewById(R.id.name);
+		txtName.setText(person.getName());
 
-		ImageView imageview = (ImageView) parentView
-				.findViewById(R.id.image_pre);
+		TextView txtSex = (TextView) parentView.findViewById(R.id.sex);
+		txtSex.setText(person.getSex());
+		
+		TextView txtAge = (TextView) parentView.findViewById(R.id.age);
+		txtAge.setText(Integer.valueOf(person.getAge()).toString());
+		
+		ImageView imageview = (ImageView) parentView.findViewById(R.id.image_pre);
+		
+		
 
 		Bitmap bitmap = ImageUtil.getLoacalBitmap(person.getFileName()); // 从本地取图
 		imageview.setImageBitmap(bitmap);

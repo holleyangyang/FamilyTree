@@ -52,7 +52,10 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:text="性别" />
-
+   <RadioGroup
+        android:id="@+id/radioGroupSex"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"  android:orientation="horizontal">
         <RadioButton
             android:id="@+id/sex1"
             android:layout_width="100px"
@@ -63,6 +66,7 @@
             android:layout_width="100px"
             android:layout_height="wrap_content"
             android:text="@string/radioSex0" />
+        </RadioGroup>
     </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"

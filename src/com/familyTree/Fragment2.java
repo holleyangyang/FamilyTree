@@ -23,13 +23,14 @@ import android.os.Environment;
 import android.provider.MediaStore;
 import android.support.v4.app.Fragment;
 import android.text.format.DateFormat;
- import android.view.LayoutInflater;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
- import android.widget.Button;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
- import android.widget.RadioButton;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
  
 public class Fragment2 extends Fragment {
 	private PersonDao personDao;
@@ -115,6 +116,18 @@ public class Fragment2 extends Fragment {
 				startActivityForResult(localIntent2, PHOTO_PICKED_WITH_DATA);
 			}
 		});
+		
+		
+		RadioGroup rb=(RadioGroup) parentView.findViewById(R.id.radioGroupSex);
+		rb.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener(){
+
+			@Override
+			public void onCheckedChanged(RadioGroup group, int checkedId) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+		});
 
 		return parentView;
 		// return super.onCreateView(, container, savedInstanceState);
@@ -125,63 +138,59 @@ public class Fragment2 extends Fragment {
 	public void onActivityResult(int requestCode, int resultCode, Intent data) {
 		super.onActivityResult(requestCode, resultCode, data);
 		if (resultCode == Activity.RESULT_OK) {
-			switch (requestCode) {
-			case CAMERA_WITH_DATA:
-				String sdStatus = Environment.getExternalStorageState();
-				if (!sdStatus.equals(Environment.MEDIA_MOUNTED)) { // 检测sd是否可用
-					return;
+			FileOutputStream b = null;
+			File file = new File("/sdcard/myImage/");
+			file.mkdirs();// 创建文件夹
+			String name = new DateFormat().format("yyyyMMdd_hhmmss",
+					Calendar.getInstance(Locale.CHINA)) + ".jpg";
+			fileName = "/sdcard/myImage/" + name;
+			try {
+				b = new FileOutputStream(fileName);
+			} catch (FileNotFoundException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}finally{
+			
+				switch (requestCode) {
+					case CAMERA_WITH_DATA:
+						String sdStatus = Environment.getExternalStorageState();
+						if (!sdStatus.equals(Environment.MEDIA_MOUNTED)) { // 检测sd是否可用
+							return;
+						}
+		
+						//Toast.makeText(getActivity(), name, Toast.LENGTH_LONG).show();
+						Bundle bundle = data.getExtras();
+						bitMap = (Bitmap) bundle.get("data");// 获取相机返回的数据，并转换为Bitmap图片格式
+						break;
+					case PHOTO_PICKED_WITH_DATA:
+						if (bitMap != null && !bitMap.isRecycled()) {
+							bitMap.recycle();
+						}
+						Uri selectedImageUri = data.getData();
+		 				
+		 				if (selectedImageUri != null) {
+							try {
+								bitMap = BitmapFactory.decodeStream(getActivity()
+										.getContentResolver().openInputStream(
+												selectedImageUri));
+							} catch (FileNotFoundException e) {
+								e.printStackTrace();
+							}
+						}
+	 					
+					break;
 				}
-
-				//Toast.makeText(getActivity(), name, Toast.LENGTH_LONG).show();
-				Bundle bundle = data.getExtras();
-				bitMap = (Bitmap) bundle.get("data");// 获取相机返回的数据，并转换为Bitmap图片格式
-    
-				 
-				((ImageView) getView().findViewById(R.id.image_pre))
-				.setImageBitmap(bitMap);// 将图片显示在ImageView里
-				break;
-			case PHOTO_PICKED_WITH_DATA:
-				if (bitMap != null && !bitMap.isRecycled()) {
-					bitMap.recycle();
-				}
-				Uri selectedImageUri = data.getData();
- 				
- 				if (selectedImageUri != null) {
-					try {
-						bitMap = BitmapFactory.decodeStream(getActivity()
-								.getContentResolver().openInputStream(
-										selectedImageUri));
-					} catch (FileNotFoundException e) {
-						e.printStackTrace();
-					}
-				}
-				
-				
-				FileOutputStream b = null;
-				File file = new File("/sdcard/myImage/");
-				file.mkdirs();// 创建文件夹
-				
-				
-				try {
-					String name = new DateFormat().format("yyyyMMdd_hhmmss",
-							Calendar.getInstance(Locale.CHINA)) + ".jpg";
-					fileName = "/sdcard/myImage/" + name;
-					b = new FileOutputStream(fileName);
-					bitMap.compress(Bitmap.CompressFormat.JPEG, 100, b);// 把数据写入文件
-					try {
-						b.flush();
-						b.close();
-					} catch (IOException e) {
-						e.printStackTrace();
-					}
-				} catch (FileNotFoundException e) {
-					e.printStackTrace();
-				}
-				
-				((ImageView) getView().findViewById(R.id.image_pre))
-				.setImageBitmap(bitMap);// 将图片显示在ImageView里
-				break;
+				bitMap.compress(Bitmap.CompressFormat.JPEG, 100, b);// 把数据写入文件
+			try {
+			
+				b.flush();
+				b.close();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
 			}
+		}
+		((ImageView) getView().findViewById(R.id.image_pre)).setImageBitmap(bitMap);// 将图片显示在ImageView里
 
 		}
 	}

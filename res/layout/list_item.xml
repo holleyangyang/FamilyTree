@@ -15,6 +15,7 @@
             android:id="@+id/id"
             android:paddingLeft="50px"
       		android:visibility="invisible"
+      		
             />
         <!-- 姓名 -->
         <TextView
@@ -22,6 +23,7 @@
             android:layout_height="wrap_content"
             android:id="@+id/name"
             android:paddingLeft="50px"
+            android:drawable="@color/red"
             />
         <!-- 性别 -->
         <TextView

@@ -41,7 +41,7 @@
             android:id="@+id/tab_rb_4"
             style="@style/tab_rb_style"
             android:drawableTop="@drawable/tab_selector_wo"
-            android:text="待扩展" />
+            android:text="我的信息" />
     </RadioGroup>
 
     <android.support.v4.app.FragmentTabHost

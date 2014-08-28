@@ -13,9 +13,19 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:text="信息填写" />
+            android:text="信息查看" />
     </LinearLayout>
- 	
+ 	    	<LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="left"
+        android:orientation="horizontal" >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="1、基本信息" />
+    </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -28,12 +38,12 @@
             android:gravity="center"
             android:text="姓名" />
 
-        <EditText
+        <TextView
             android:id="@+id/name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10" >
-        </EditText>
+        </TextView>
     </LinearLayout>
 
     <LinearLayout
@@ -45,17 +55,13 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:text="性别" />
-
-        <RadioButton
-            android:id="@+id/sex1"
+        <TextView
+             android:id="@+id/sex"
             android:layout_width="100px"
             android:layout_height="wrap_content"
-            android:text="@string/radioSex1" />
-        <RadioButton
-            android:id="@+id/sex0"
-            android:layout_width="100px"
-            android:layout_height="wrap_content"
-            android:text="@string/radioSex0" />
+            android:gravity="center"
+            android:text="性别" />
+        
     </LinearLayout>
         <LinearLayout
         android:layout_width="match_parent"
@@ -69,22 +75,23 @@
             android:gravity="center"
             android:text="年龄" />
 
-        <EditText
+        <TextView
             android:id="@+id/age"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:ems="10" android:text="0">
-        </EditText>
+            
+            >
+        </TextView>
     </LinearLayout>
 <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal" >
-    <Button
-        android:id="@+id/bthPZ"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/btnPz" />
+             <TextView
+            android:layout_width="100px"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="图像" />
         <ImageView android:id="@+id/image_pre"  
         android:layout_marginTop="6px" 
         android:layout_marginBottom="6px"  
@@ -99,11 +106,7 @@
         android:layout_height="wrap_content"
         android:gravity="center"
         android:orientation="horizontal" >
-    <Button
-        android:id="@+id/bthSub"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/bthSub" />
+     
     <Button
         android:id="@+id/btnReturn"
         android:layout_width="wrap_content"
